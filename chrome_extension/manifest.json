@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "URL Sender",
+    "description": "Send current URL to Flask server",
+    "version": "1.0",
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "http://localhost:5000/receive_url"
+    ],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": true
+    },
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "hello_extensions.png",
+        "48": "hello_extensions.png",
+        "128": "hello_extensions.png"
+      }
+    }
+  }
+  
