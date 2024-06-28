@@ -1,24 +1,25 @@
 {
-    "manifest_version": 2,
-    "name": "URL Sender",
-    "description": "Send current URL to Flask server",
-    "version": "1.0",
-    "permissions": [
+  "manifest_version": 3,
+  "name": "URL Sender",
+  "version": "1.0",
+  "description": "Send current URL to Flask server",
+  "permissions": [
       "tabs",
-      "activeTab",
+      "activeTab"
+  ],
+  "background": {
+      "service_worker": "background.js"
+  },
+  "host_permissions": [
       "http://localhost:5000/receive_url"
-    ],
-    "background": {
-      "scripts": ["background.js"],
-      "persistent": true
-    },
-    "browser_action": {
+  ],
+  "action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "hello_extensions.png",
-        "48": "hello_extensions.png",
-        "128": "hello_extensions.png"
+          "16": "hello_extensions.png",
+          "48": "hello_extensions.png",
+          "128": "hello_extensions.png"
       }
-    }
   }
-  
+}
+
