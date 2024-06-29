@@ -1,17 +1,20 @@
 # Sort Downloads by Website of Origin
 
-A program that automatically new downloads into subfolders based on their source website located in the same downloads folder.
+A program that automatically new downloads into subfolders based on their source website located in the same downloads folder. The source website is detected using chrome API.
+
+### Note: Only works for Google Chrome
 
 ## Features
 
 - Change the program's operating folder
 - Start and stop the program at will
 - Logs to keep track of changes made like when the program has been started, stopped, and moved a file (its old and new locations)
+	- Note: Any logs older than 2 weeks will automatically be deleted to save memory
 - A label that constantly displays the website you are on
 
 ## Installation
 
-- [ ] Install Python3.9
+- [ ] Install Python3.9 (Python installation instructions modified from [Raymo111](https://github.com/Raymo111/kahoot-answer-bot))
 	
   On Windows visit `https://www.python.org/downloads/windows/`
 	- Click latest Python 3.9 release
@@ -29,9 +32,9 @@ A program that automatically new downloads into subfolders based on their source
     On Debian GNU/Linux 11+ based distros:
     - `sudo apt update`
     - `sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev`
-    - `wget https://www.python.org/ftp/python/3.9.7/Python-3.9.7.tgz`
-    - `tar -xf Python-3.9.7.tgz`
-    - `cd Python-3.9.7`
+    - `wget https://www.python.org/ftp/python/3.9.12/Python-3.9.12.tgz`
+    - `tar -xf Python-3.9.12.tgz`
+    - `cd Python-3.9.12`
     - `./configure --enable-optimizations`
     - `make`
     - `sudo make altinstall`
@@ -41,7 +44,30 @@ A program that automatically new downloads into subfolders based on their source
  	- `git clone https://aur.archlinux.org/python39.git`
   	- `cd python39`
   	- `makepkg -si`
+  	  
+On other Linux based distros install python3.9 from your package manager.
 
 - [ ]  Download and unzip or clone this repo
-	- https://github.com/Raymo111/kahoot-answer-bot/archive/master.zip
-	- `git clone https://github.com/Raymo111/kahoot-answer-bot.git`
+	- https://github.com/andytluminosity/Sort-Downloads-by-Website-of-Origin/archive/master.zip
+	- `git clone https://github.com/andytluminosity/Sort-Downloads-by-Website-of-Origin.git`
+ 
+- [ ] Install Dependencies
+	- `python3.9 -m pip install flask flask_cors` / `python -m pip install flask flask_cors` / `py -m pip install flask flask_cors`
+   
+## Usage
+
+- [ ] Add chrome extension to chrome
+	- Go to the Extensions page by entering chrome://extensions in a new tab. (By design chrome:// URLs are not linkable.)
+	  Alternatively, click the Extensions menu puzzle button and select Manage Extensions at the bottom of the menu.
+	  Or, click the Chrome menu, hover over More Tools, then select Extensions.
+	- Enable Developer Mode by clicking the toggle switch next to Developer mode.
+	- Click the Load unpacked button and select the `chrome_extension` folder
+ - [ ] Start the program
+	- Simple open the start.exe application within the `python_frontend` folder
+ 	- It is recommended to have this application pinned to your taskbar
+ - [ ] Select the operating folder path
+	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
+ 	- You may change the operating folder path at any time
+
+  
+
