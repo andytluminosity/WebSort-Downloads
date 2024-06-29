@@ -14,7 +14,7 @@ A program that automatically new downloads into subfolders based on their source
 
 ## Installation
 
-- [ ] Install Python3.9 (Python installation instructions modified from [Raymo111](https://github.com/Raymo111/kahoot-answer-bot))
+- [ ] Install Python3.9
 	
   On Windows visit `https://www.python.org/downloads/windows/`
 	- Click latest Python 3.9 release
@@ -75,3 +75,7 @@ On other Linux based distros install python3.9 from your package manager.
 - [ ] My download is being sorted into the wrong folder / My current website is not being detected
 	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds after visiting a new website to download a file.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
+
+## Contributors
+- [andytluminosity](https://github.com/andytluminosity) - Main Programming
+- [Raymo111](https://github.com/Raymo111/kahoot-answer-bot)) - Instructions to install Python 3.9
