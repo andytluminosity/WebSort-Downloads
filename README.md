@@ -66,7 +66,7 @@ On other Linux based distros install python3.9 from your package manager.
  - [ ] Start the program
 	- Simple open the start.exe application within the `python_frontend` folder
  	- It is recommended to have this application pinned to your taskbar
- 	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See File Safety if you are concerned about the well-being of your files
+ 	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See **File Safety** if you are concerned about the well-being of your files
  - [ ] Select the operating folder path
 	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
  	- The program will save this folder path so you will only have to input it once
@@ -77,10 +77,12 @@ On other Linux based distros install python3.9 from your package manager.
 
 ## Known Issues / Troubleshooting
 
-- [ ] My download is being sorted into the wrong folder / My current website is not being detected
+- [ ] My download is being sorted into the wrong folder / My current website is not being correctly detected
 	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds after visiting a new website to download a file.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 
+- [ ] My current website is not being detected at all
+	- Remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
 ## Contributors
 - [andytluminosity](https://github.com/andytluminosity) - Main Programming
 - [Raymo111](https://github.com/Raymo111/kahoot-answer-bot) - Instructions to install Python 3.9
