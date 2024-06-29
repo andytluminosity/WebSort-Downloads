@@ -78,7 +78,7 @@ On other Linux based distros install python3.9 from your package manager.
 ## Known Issues / Troubleshooting
 
 - [ ] My download is being sorted into the wrong folder / My current website is not being correctly detected
-	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds to download a file after visiting a new website.
+	- There is a slight delay when detecting the current website you are on when accessing Chrome API. It is recommended to wait for around 1 or 2 seconds to download a file after visiting a new website.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 
 - [ ] My current website is not being detected at all
