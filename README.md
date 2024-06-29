@@ -1,8 +1,8 @@
 # WebSort Downloads
 
-A program that automatically new downloads into subfolders based on their source website located in the same downloads folder. The source website is detected using chrome API.
-
 ### Note: Only works for Google Chrome
+
+A program that automatically new downloads into subfolders based on their source website located in the same downloads folder. The source website is detected using Chrome API.
 
 ## Features
 
@@ -73,12 +73,12 @@ On other Linux based distros install python3.9 from your package manager.
  	- You may change the operating folder path at any time
 
 ## File Safety
-- The program is only able to move files with absolutely **no ability to delete** them. You may check the old and new location of moved files in the `Logs` tab
+- The program can only move files with absolutely **no ability to delete** them. You may check the old and new location of moved files in the `Logs` tab
 
 ## Known Issues / Troubleshooting
 
 - [ ] My download is being sorted into the wrong folder / My current website is not being correctly detected
-	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds after visiting a new website to download a file.
+	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds to download a file after visiting a new website.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 
 - [ ] My current website is not being detected at all
