@@ -14,7 +14,7 @@ A program that automatically new downloads into subfolders based on their source
 
 ## Installation
 
-- [ ] Install Python3.9
+- [ ] Install Python 3.9
 	
   On Windows visit `https://www.python.org/downloads/windows/`
 	- Click latest Python 3.9 release
