@@ -61,7 +61,8 @@ On other Linux based distros install python3.9 from your package manager.
 	  Alternatively, click the Extensions menu puzzle button and select Manage Extensions at the bottom of the menu.
 	  Or, click the Chrome menu, hover over More Tools, then select Extensions.
 	- Enable Developer Mode by clicking the toggle switch next to Developer mode.
-	- Click the Load unpacked button and select the `chrome_extension` folder
+	- Click the Load unpacked button and select the `url_sender_extension` folder	
+	- Ensure that the extension is turned on
  - [ ] Start the program
 	- Simple open the start.exe application within the `python_frontend` folder
  	- It is recommended to have this application pinned to your taskbar
@@ -69,5 +70,8 @@ On other Linux based distros install python3.9 from your package manager.
 	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
  	- You may change the operating folder path at any time
 
-  
+## Known Issues / Troubleshooting
 
+- [ ] My download is being sorted into the wrong folder / My current website is not being detected
+	- There is a slight delay when detecting the current website you are on. It is recommended to wait for around 1 or 2 seconds after visiting a new website to download a file.
+ 	You can always check which website is being detected using the `Detected Website:` label on the GUI
