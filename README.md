@@ -66,9 +66,13 @@ On other Linux based distros install python3.9 from your package manager.
  - [ ] Start the program
 	- Simple open the start.exe application within the `python_frontend` folder
  	- It is recommended to have this application pinned to your taskbar
+ 	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See File Safety if you are concerned about the well-being of your files
  - [ ] Select the operating folder path
 	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
  	- You may change the operating folder path at any time
+
+## File Safety
+- The program is only able to move files and not delete them. You may check the old and new location of moved files in the `Logs` tab
 
 ## Known Issues / Troubleshooting
 
