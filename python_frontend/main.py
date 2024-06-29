@@ -53,7 +53,7 @@ def update_detected_website_on_GUI():
     while True:
         websiteName = findWebsite()
         if websiteName:
-            websiteLabel.config(text=f"Detected website: {websiteName}") # Update the display detected website on GUI
+            websiteLabel.config(text=f"Detected Website: {websiteName}") # Update the display detected website on GUI
         time.sleep(0.1) # Delay between HTTPS requests to ensure findWebsite() works correctly
 
 def start_main_program():
@@ -122,7 +122,7 @@ def main():
 
         # Always have a label that shows the detected website
 
-        websiteLabel = tk.Label(mainTab, text="Detected website: ")
+        websiteLabel = tk.Label(mainTab, text="Detected Website: ")
         websiteLabel.pack(pady=0)
 
         update_website_thread = threading.Thread(target=update_detected_website_on_GUI)
