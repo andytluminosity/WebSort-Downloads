@@ -72,7 +72,7 @@ On other Linux based distros install python3.9 from your package manager.
  	- You may change the operating folder path at any time
 
 ## File Safety
-- The program is only able to move files and not delete them. You may check the old and new location of moved files in the `Logs` tab
+- The program is only able to move files with absolutely **no ability to delete** them. You may check the old and new location of moved files in the `Logs` tab
 
 ## Known Issues / Troubleshooting
 
