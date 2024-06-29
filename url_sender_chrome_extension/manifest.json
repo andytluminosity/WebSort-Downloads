@@ -13,13 +13,5 @@
   "host_permissions": [
       "http://localhost:5000/receive_url"
   ],
-  "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-          "16": "hello_extensions.png",
-          "48": "hello_extensions.png",
-          "128": "hello_extensions.png"
-      }
-  }
 }
 
