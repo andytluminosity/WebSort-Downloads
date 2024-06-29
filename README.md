@@ -1,4 +1,4 @@
-# Sort Downloads by Website of Origin
+# WebSort Downloads
 
 A program that automatically new downloads into subfolders based on their source website located in the same downloads folder. The source website is detected using chrome API.
 
