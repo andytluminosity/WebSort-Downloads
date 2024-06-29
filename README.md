@@ -69,6 +69,7 @@ On other Linux based distros install python3.9 from your package manager.
  	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See File Safety if you are concerned about the well-being of your files
  - [ ] Select the operating folder path
 	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
+ 	- The program will save this folder path so you will only have to input it once
  	- You may change the operating folder path at any time
 
 ## File Safety
