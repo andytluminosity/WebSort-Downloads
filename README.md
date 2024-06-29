@@ -78,4 +78,4 @@ On other Linux based distros install python3.9 from your package manager.
 
 ## Contributors
 - [andytluminosity](https://github.com/andytluminosity) - Main Programming
-- [Raymo111](https://github.com/Raymo111/kahoot-answer-bot)) - Instructions to install Python 3.9
+- [Raymo111](https://github.com/Raymo111/kahoot-answer-bot) - Instructions to install Python 3.9
