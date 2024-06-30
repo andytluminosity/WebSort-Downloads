@@ -86,7 +86,7 @@ def main():
         # Create GUI
 
         root = tk.Tk() # Shortcut
-        root.title("Sort Downloads by Website of Origin by Andy Tong")
+        root.title("WebSort Downloads by Andy Tong")
         root.geometry("500x270")
 
         # Create Tabs
