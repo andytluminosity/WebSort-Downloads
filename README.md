@@ -83,6 +83,10 @@ On other Linux based distros install python3.9 from your package manager.
 
 - [ ] Current website is not being detected at all
 	- Remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
+
+## Reporting Other Issues
+- When reporting other issues, please run the program using start_debug.exe and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
+
 ## Contributors
 - [andytluminosity](https://github.com/andytluminosity) - Main Programming
 - [Raymo111](https://github.com/Raymo111/kahoot-answer-bot) - Instructions to install Python 3.9
