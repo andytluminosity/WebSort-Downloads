@@ -48,7 +48,7 @@ A program that automatically new downloads into subfolders based on their source
 On other Linux based distros install python3.9 from your package manager.
 
 - [ ]  Download the main zip file from the latest release notes
-	- [WebSort-Downloads-main.zip](https://github.com/user-attachments/files/16044787/WebSort-Downloads-main.zip)
+	- [WebSort Downloads.zip](https://github.com/user-attachments/files/16044994/WebSort.Downloads.zip)
 	- [Latest release notes](https://github.com/andytluminosity/WebSort-Downloads/releases/tag/v1.0)
  
 - [ ] Install Dependencies
