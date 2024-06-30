@@ -49,7 +49,7 @@ On other Linux based distros install python3.9 from your package manager.
 
 - [ ]  Download the zip file from the latest release notes
 	- [WebSort-Downloads-main.zip](https://github.com/user-attachments/files/16044787/WebSort-Downloads-main.zip)
-	- `https://github.com/andytluminosity/WebSort-Downloads/releases/tag/v1.0`
+	- `[Latest release notes](https://github.com/andytluminosity/WebSort-Downloads/releases/tag/v1.0)`
  
 - [ ] Install Dependencies
 	- `python3.9 -m pip install flask flask_cors` / `python -m pip install flask flask_cors` / `py -m pip install flask flask_cors`
