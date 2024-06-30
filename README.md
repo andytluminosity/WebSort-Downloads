@@ -56,7 +56,7 @@ On other Linux based distros install python3.9 from your package manager.
    
 ## Usage
 
-- [ ] Add chrome extension to chrome
+- [ ] Add Chrome extension to Chrome
 	- Go to the Extensions page by entering chrome://extensions in a new tab. (By design chrome:// URLs are not linkable.)
 	  Alternatively, click the Extensions menu puzzle button and select Manage Extensions at the bottom of the menu.
 	  Or, click the Chrome menu, hover over More Tools, then select Extensions.
