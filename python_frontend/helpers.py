@@ -34,12 +34,12 @@ def verify_path_to_sort_folder(folderPath, get_stored_sort_folder_path, store_so
             messagebox.showinfo("Error","Please select the a valid folder path to move downloads from "
                                 "and store sorted folder in")
 
-def change_path_to_sort_folder(folderPath, store_sort_folder_file_path, updateLog, cur_sort_folder):
+def change_path_to_sort_folder(folderPath, store_sort_folder_file_path, updateLog, cur_sort_folder, logText):
     input_path = r'{}'.format(askdirectory(title="Select the Folder to Move Downloads From and Store Sorted Folders In"))
     if input_path:
         store_sort_folder_file_path(input_path)
         folderPath = input_path
-        updateLog(f"Operating Folder changed to {input_path}")
+        updateLog(f"Operating Folder changed to {input_path}",logText)
         cur_sort_folder.config(text=f"Operating Folder: {folderPath}")
     else:
         messagebox.showinfo("Error", "Please select a valid folder path to move downloads from and store sorted folder in")
