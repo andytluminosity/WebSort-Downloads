@@ -85,7 +85,7 @@ On other Linux based distros install python3.9 from your package manager.
 	- Remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
 
 ## Reporting Other Issues
-- When reporting other issues, please run the program using start_debug.exe and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
+- When reporting other issues, please run the program using start_debug.exe, recreate the issue, and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
 
 ## Contributors
 - [andytluminosity](https://github.com/andytluminosity) - Main Programming
