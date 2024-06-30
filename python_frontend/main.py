@@ -110,7 +110,7 @@ def main():
         cur_sort_folder = tk.Label(mainTab, text=f"Operating Folder: {folderPath}")
         cur_sort_folder.pack(pady=5)
         tk.Button(mainTab, text="Change Operating Folder", command=lambda:
-            change_path_to_sort_folder(folderPath,store_sort_folder_file_path,updateLog,cur_sort_folder)).pack(pady=5)
+            change_path_to_sort_folder(folderPath,store_sort_folder_file_path,updateLog,cur_sort_folder,logText)).pack(pady=5)
 
         # Access the stored file path that the user wants to move downloads from and store the folders with sorted files to
         # Prompt the user to input a valid one if none exists
