@@ -17,7 +17,7 @@ def verify_path_to_sort_folder(folderPath, get_stored_sort_folder_path, store_so
 
     if stored_path:
         folderPath = stored_path
-        cur_sort_folder.config(text=f"Operating folder: {folderPath}")  # Update the displayed path on GUI
+        cur_sort_folder.config(text=f"Operating Folder: {folderPath}")  # Update the displayed path on GUI
         return folderPath
     else:
         # Prompt the user to input the file path
@@ -28,7 +28,7 @@ def verify_path_to_sort_folder(folderPath, get_stored_sort_folder_path, store_so
         if input_path:
             store_sort_folder_file_path(str(input_path))
             folderPath = input_path
-            cur_sort_folder.config(text=f"Operating folder: {folderPath}")  # Update the displayed path on GUI
+            cur_sort_folder.config(text=f"Operating Folder: {folderPath}")  # Update the displayed path on GUI
             return folderPath
         else:
             messagebox.showinfo("Error","Please select the a valid folder path to move downloads from "
@@ -39,8 +39,8 @@ def change_path_to_sort_folder(folderPath, store_sort_folder_file_path, updateLo
     if input_path:
         store_sort_folder_file_path(input_path)
         folderPath = input_path
-        updateLog(f"Operating folder changed to {input_path}")
-        cur_sort_folder.config(text=f"Operating folder: {folderPath}")
+        updateLog(f"Operating Folder changed to {input_path}")
+        cur_sort_folder.config(text=f"Operating Folder: {folderPath}")
     else:
         messagebox.showinfo("Error", "Please select a valid folder path to move downloads from and store sorted folder in")
 
