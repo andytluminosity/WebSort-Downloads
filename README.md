@@ -63,13 +63,24 @@ On other Linux based distros install python3.9 from your package manager.
 	- Click the Load unpacked button and select the `url_sender_extension` folder	
 	- Ensure that the extension is turned on
  - [ ] Start the program
-	- Simple open the start.exe application within the `WebSort Downloads` folder (it simply is a shortcut to running main.py from `python_frontend`)
+	- Simple open the start.exe application within the `python_frontend` folder (it simply is a shortcut to running main.py)
  	- It is recommended to have this application pinned to your taskbar
  	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See **File Safety** if you are concerned about the well-being of your files
  - [ ] Select the operating folder path
 	- Select the folder path that your downloads are automatically saved to (typically `C:\Users\YOUR_USER_NAME\Downloads`)
  	- The program will save this folder path so you will only have to input it once
  	- You may change the operating folder path at any time
+ - [ ] Create special cases (optional)
+	- Special cases where users can choose the folder all files downloaded from a certain website are automatically sent to
+	- Add a special case
+		- Click the 'Add Special Case' button in the `Special Cases` tab
+  		- Enter the website's name and the folder path all downloads from that website will be redirected to
+			- Note: The website's name should only include the main URL without anything after the slashes
+    		- Eg. Valid: `google.com` Invalid: `google.com/maps`. Alternatively, enter whatever is shown in the `Detected Website` label in the `Main` tab when on the desired website
+      		- Finally, click the 'Add' button. The special case will then appear in the `Special Cases` tab
+   - Delete a special case
+      - In the `Special Cases` tab, simply click the `X` next to the special case you want to delete
+      - Confirm the deletion when prompted
 
 ## File Safety
 - The program can only move files with absolutely **no ability to delete them**. You may check the old and new location of moved files in the `Logs` tab
