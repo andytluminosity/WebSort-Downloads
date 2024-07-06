@@ -3,6 +3,7 @@ from main import *
 import tkinter as tk
 from tkinter.filedialog import askdirectory
 from logs_database import *
+from tkinter import font
 
 def delete_special_case(row, labels, dbTab, logText):
     conn = sqlite3.connect('websites.db')
@@ -93,16 +94,26 @@ def refresh_special_cases_gui(labels, special_cases_tab, logText):
     special_cases_tab.grid_columnconfigure(4, minsize=50)
     special_cases_tab.grid_columnconfigure(2, minsize=50)
 
+    # Add column headers
+    website_header = tk.Label(special_cases_tab, text="Website",font=font.Font(weight="bold"), anchor='w')
+    website_header.grid(row=1, column=1, pady=5, sticky='w')
+
+    folder_path_header = tk.Label(special_cases_tab, text="New Folder Path", font=font.Font(weight="bold"),anchor='w')
+    folder_path_header.grid(row=1, column=3, pady=5, sticky='w')
+
+    labels.append(website_header)
+    labels.append(folder_path_header)
+
     # Insert the logs into the text widget. Website, folder path, and delete buttons in cols 1,2, and 3 respectfully
     for row, (websiteName,folderPath) in enumerate(logs):
         new_website_label = tk.Label(special_cases_tab, text=f"{websiteName}", anchor='w')
-        new_website_label.grid(row=row+2, column=1, pady=5,sticky='w')
+        new_website_label.grid(row=row+3, column=1, pady=5,sticky='w')
 
         new_folder_label = tk.Label(special_cases_tab, text=f"{folderPath}", anchor='w')
-        new_folder_label.grid(row=row+2, column=3, pady=5,sticky='w')
+        new_folder_label.grid(row=row+3, column=3, pady=5,sticky='w')
 
         delete_button = tk.Button(special_cases_tab, text="X", command=lambda row=row + 1: delete_special_case(row, labels, special_cases_tab, logText))
-        delete_button.grid(row=row+2, column=5, pady=5,sticky='ew')
+        delete_button.grid(row=row+3, column=5, pady=5,sticky='ew')
 
         labels.append(new_website_label)
         labels.append(new_folder_label)
