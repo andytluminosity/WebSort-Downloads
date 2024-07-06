@@ -92,7 +92,7 @@ On other Linux based distros install python3.9 from your package manager.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 
 - [ ] Current website is not being detected at all
-	- Remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
+	- First reload/refresh the Chrome extension. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
 
 ## Reporting Other Issues
 - When reporting other issues, please run the program using start_debug.exe, recreate the issue, and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
