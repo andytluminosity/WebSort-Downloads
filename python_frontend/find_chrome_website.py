@@ -14,7 +14,6 @@ def receive_url():
     global curURL  # Declare the variable as global to modify it
     data = request.get_json()
     url = data.get('url')
-
     with curURL_lock:
         curURL = url
         print(f"Received URL: {curURL}")

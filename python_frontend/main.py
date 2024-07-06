@@ -1,6 +1,7 @@
 from tkinter import ttk
 from file_database import *
 from logs_database import *
+from special_cases_tab import *
 from helpers import *
 from find_chrome_website import *
 import shutil
@@ -18,12 +19,14 @@ def findWebsite():
     # Get the curURL after server has stopped
     url = get_current_url()
     print(url)
-    #Only get the main website name
+    # Only get the main website name
     components = url.split("/")
     for comp in components:
-        if "." in comp: #The website name will have at least 1 "." from the domain name
+        if "." in comp:  # The website name will have at least 1 "." from the domain name
+            if len(comp)>=5: # Ensure that the starting "www." is removed
+                if 'www.' in comp:
+                    return comp[4:]
             return comp
-
 
 def move_downloaded_files_under_sorted_folder():
     # Get the most recent file in the indicated sorted folder path for later reference
@@ -39,7 +42,15 @@ def move_downloaded_files_under_sorted_folder():
                 downloadedFile = getMostRecentFileInFolder(folderPath)
 
                 if downloadedFile != mostRecentFile: # Makes sure the program only moves newly downloaded files
-                    newFolderPath = os.path.join(folderPath, websiteName)
+                    # If a special case has been made, move it to the specified folder path
+                    # Second condition accounts for if www. was put into a special case
+
+                    if check_existence_of_websiteName(websiteName) or check_existence_of_websiteName("www."+websiteName):
+                        newFolderPath = get_folder_path(websiteName)
+
+                    # Otherwise, move it to a folder titled websiteName
+                    else:
+                        newFolderPath = os.path.join(folderPath, websiteName)
 
                     if not os.path.exists(newFolderPath):
                         os.makedirs(newFolderPath)
@@ -80,8 +91,9 @@ def main():
 
         create_file_database()
         create_logs_database()
+        create_special_case_database()
 
-        folderPath = "placeholder"
+        folderPath = "N/A"
 
         # Create GUI
 
@@ -96,6 +108,8 @@ def main():
         tabRoot.add(mainTab, text='Main')
         logsTab = ttk.Frame(tabRoot) # Make the logs tab
         tabRoot.add(logsTab, text='Logs')
+        special_cases_tab = ttk.Frame(tabRoot) # Make the
+        tabRoot.add(special_cases_tab, text='Special Cases')
 
         tabRoot.pack(expand=1, fill='both')
 
@@ -139,6 +153,19 @@ def main():
         # Cleanup old logs periodically
         cleanupInterval = 60 * 60 * 24  # Run cleanup once a day
         root.after(cleanupInterval, cleanup_old_logs)
+
+        # Database Tab
+
+        labels = []
+        #tk.Label(special_cases_tab, text="Website Name:").grid(row=0, column=0, padx=10, pady=10, sticky='w')
+        tk.Button(special_cases_tab, text="Add Special Case", command= lambda: open_add_special_case_window(logText, labels, special_cases_tab)).grid\
+            (row=0, column=1, columnspan=5, padx=10, pady=10, sticky='ew')
+
+        # Add an empty column at the beginning to shift everything to the right (to centre align)
+        special_cases_tab.grid_columnconfigure(0, minsize=50)
+
+        # Put in the initial data
+        refresh_special_cases_gui(labels, special_cases_tab, logText)
 
         root.mainloop()
 
