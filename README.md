@@ -71,7 +71,7 @@ On other Linux based distros install python3.9 from your package manager.
  	- The program will save this folder path so you will only have to input it once
  	- You may change the operating folder path at any time
  - [ ] Create special cases (optional)
-	- Special cases where users can choose the folder all files downloaded from a certain website are automatically sent to
+	- Special cases are cases where users can choose the folder all files downloaded from a certain website are automatically sent to
 	- Add a special case
 		- Click the 'Add Special Case' button in the `Special Cases` tab
   		- Enter the website's name and the folder path all downloads from that website will be redirected to
