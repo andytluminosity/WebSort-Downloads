@@ -1,7 +1,7 @@
 import sqlite3
 
 def create_special_case_database():
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     c = conn.cursor()
 
     #Create a table to store special cases if it doesn't exist
@@ -11,7 +11,7 @@ def create_special_case_database():
     conn.close()
 
 def check_existence_of_websiteName(checkWebsite):
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     c = conn.cursor()
 
     query = "SELECT EXISTS(SELECT 1 FROM websites WHERE websiteName = ? LIMIT 1)"
@@ -21,7 +21,7 @@ def check_existence_of_websiteName(checkWebsite):
     return exists
 
 def get_folder_path(websiteName):
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     cursor = conn.cursor()
 
     cursor.execute("SELECT folderPath FROM websites WHERE websiteName = ?", (websiteName,))
@@ -37,7 +37,7 @@ def get_folder_path(websiteName):
         return None
 
 def store_special_case(websiteName, folderPath):
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     c = conn.cursor()
     c.execute("INSERT INTO websites (websiteName, folderPath) VALUES (?, ?)",
               (websiteName, folderPath))
@@ -46,7 +46,7 @@ def store_special_case(websiteName, folderPath):
 
 def delete_from_database(websiteName):
     if check_existence_of_websiteName(websiteName):
-        conn = sqlite3.connect('websites.db')
+        conn = sqlite3.connect('special_cases.db')
         c = conn.cursor()
         c.execute('DELETE FROM websites WHERE websiteName = ?', (websiteName,))
         conn.commit()
