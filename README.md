@@ -2,7 +2,7 @@
 
 ### Note: Only works for Google Chrome
 
-A program that automatically new downloads into subfolders based on their source website located in the same downloads folder. The source website is detected using Chrome API.
+A program that by default automatically sorts new downloads into subfolders based on their source website located in the same downloads folder. You can control where downloads from certain websites are sorted to with `Special Cases`. The source website is detected using Chrome API.
 
 ## Features
 
