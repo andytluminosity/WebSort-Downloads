@@ -95,7 +95,7 @@ On other Linux based distros install python3.9 from your package manager.
 - [ ] Current website is not being detected at all
 	- First reload/refresh the Chrome extension. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
 - [ ] Only some downloads are being sorted into the desired folder
-	- Currently, this program is quite slow. It is recommended to download files with 1-second intervals to ensure that the program sorts every download
+	- Currently, this program is quite slow. It is recommended to download files with 0.5 to 1 second intervals to ensure that the program sorts every download
 
 ## Reporting Other Issues
 - When reporting other issues, please run the program using start_debug.exe, recreate the issue, and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
