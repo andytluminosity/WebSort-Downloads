@@ -6,7 +6,7 @@ from logs_database import *
 from tkinter import font
 
 def delete_special_case(row, labels, dbTab, logText):
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     c = conn.cursor()
 
     # Fetch the websiteName and id of the specific row
@@ -58,7 +58,7 @@ def open_add_special_case_window(logText, labels, dbTab):
         add_window.focus_force()
 
     add_window = tk.Toplevel()
-    add_window.title("Add Website")
+    add_window.title("Add Special Case")
     add_window.geometry('350x200')
 
     # Add empty column to centre align everything (move everything to the right)
@@ -78,7 +78,7 @@ def open_add_special_case_window(logText, labels, dbTab):
 
 def refresh_special_cases_gui(labels, special_cases_tab, logText):
     # Fetch the logs from the database
-    conn = sqlite3.connect('websites.db')
+    conn = sqlite3.connect('special_cases.db')
     cursor = conn.cursor()
     cursor.execute('SELECT websiteName, folderPath FROM websites ORDER BY websiteName ASC')
     logs = cursor.fetchall()
