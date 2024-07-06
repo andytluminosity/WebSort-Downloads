@@ -12,6 +12,6 @@
   },
   "host_permissions": [
       "http://localhost:5000/receive_url"
-  ],
+  ]
 }
 
