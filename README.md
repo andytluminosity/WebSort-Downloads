@@ -93,9 +93,8 @@ On other Linux based distros install python3.9 from your package manager.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 
 - [ ] Current website is not being detected at all
-	- First reload/refresh the Chrome extension. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on re-adding the extension)
-- [ ] Only some downloads are being sorted into the desired folder
-	- The time it takes for certain downloads to be sorted into folders is directly proportional to its size. As a rule of thumb, it is recommended to wait 0.5-1 second before downloading another file
+	- First reload/refresh the Chrome extension in developer mode. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on enabling developer mode and re-adding the extension)
+
 ## Reporting Other Issues
 - When reporting other issues, please run the program using start_debug.exe, recreate the issue, and copy-paste everything that is said on the console into a .txt file. It makes fixing the issue a lot easier!
 
