@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import threading
+import logging
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
@@ -24,11 +25,14 @@ def get_current_url():
     with curURL_lock:
         return curURL
 
-def run_server():
-    app.run(port=5000)
-
 # Function to run the server in a separate thread
 def start_flask_server():
+    def run_server():
+        # Suppress messages from Flask Server for debugging
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.CRITICAL)
+        app.run(port=5000,debug=False)
+
     server_thread = threading.Thread(target=run_server)
     server_thread.daemon = True
     server_thread.start()
@@ -36,9 +40,7 @@ def start_flask_server():
 
 # Function to stop the server
 def stop_flask_server(server_thread):
-    # Perform cleanup or signal the server to stop
-    print("Stopping server...")
     # Stop the thread
     if server_thread.is_alive():
-        server_thread.join(timeout=1)
+        server_thread.join(timeout=0.25)
 

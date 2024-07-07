@@ -7,65 +7,73 @@ from find_chrome_website import *
 import shutil
 import time
 
-def findWebsite():
-    # Start the Flask server from find_chrome_website
-    server_thread = start_flask_server()
-    # Wait for the server to start
-    time.sleep(0.1)
+def updateVariables():
+    def findWebsite():
+        global cur_website_name
+        while True:
+            # Start the Flask server from find_chrome_website
+            server_thread = start_flask_server()
+            # Wait for the server to start
+            time.sleep(0.1)
 
-    # Stop the Flask server
-    stop_flask_server(server_thread)
+            # Stop the Flask server
+            stop_flask_server(server_thread)
 
-    # Get the curURL after server has stopped
-    url = get_current_url()
-    print(url)
-    # Only get the main website name
-    components = url.split("/")
-    for comp in components:
-        if "." in comp:  # The website name will have at least 1 "." from the domain name
-            if len(comp)>=5: # Ensure that the starting "www." is removed
-                if 'www.' in comp:
-                    return comp[4:]
-            return comp
+            # Get the curURL after server has stopped
+            url = get_current_url()
+            print(url)
+            # Only get the main website name
+            components = url.split("/")
+            for comp in components:
+                if "." in comp:  # The website name will have at least 1 "." from the domain name
+                    if len(comp) >= 5:  # Ensure that the starting "www." is removed
+                        if 'www.' in comp:
+                            cur_website_name = comp[4:]
+                            break
+                    cur_website_name = comp
+                    break
+
+    findWebsite()
 
 def move_downloaded_files_under_sorted_folder():
+    global cur_website_name
+    global folderPath
     # Get the most recent file in the indicated sorted folder path for later reference
-    if getMostRecentFileInFolder(folderPath):
-        mostRecentFile = getMostRecentFileInFolder(folderPath)
-    else:
-        mostRecentFile = -1
+    mostRecentFile = getMostRecentFileInFolder(folderPath)
 
     while not stop_event.is_set(): # While the program is still running
-        websiteName = findWebsite()
-        if websiteName != False:
-            if getMostRecentFileInFolder(folderPath):
-                downloadedFile = getMostRecentFileInFolder(folderPath)
+        if getMostRecentFileInFolder(folderPath): # If there is a file in the operating folder
+            downloadedFile = getMostRecentFileInFolder(folderPath)
 
-                if downloadedFile != mostRecentFile: # Makes sure the program only moves newly downloaded files
+            if downloadedFile != mostRecentFile: # Makes sure the program only moves newly downloaded files
+                if cur_website_name != False:
+
                     # If a special case has been made, move it to the specified folder path
                     # Second condition accounts for if www. was put into a special case
 
-                    if check_existence_of_websiteName(websiteName) or check_existence_of_websiteName("www."+websiteName):
-                        newFolderPath = get_folder_path(websiteName)
+                    if check_existence_of_websiteName(cur_website_name) or check_existence_of_websiteName("www." + cur_website_name):
+                        newFolderPath = get_folder_path(cur_website_name)
 
                     # Otherwise, move it to a folder titled websiteName
                     else:
-                        newFolderPath = os.path.join(folderPath, websiteName)
+                        newFolderPath = os.path.join(folderPath, cur_website_name)
 
                     if not os.path.exists(newFolderPath):
                         os.makedirs(newFolderPath)
                     shutil.move(downloadedFile, newFolderPath)
                     updateLog(f"{downloadedFile} moved to {newFolderPath}", logText)
 
-                #Update the most recent file
-                mostRecentFile = getMostRecentFileInFolder(folderPath)
-
 def update_detected_website_on_GUI():
+    global cur_website_name
     while True:
-        websiteName = findWebsite()
-        if websiteName:
-            websiteLabel.config(text=f"Detected Website: {websiteName}") # Update the display detected website on GUI
+        print(cur_website_name)
+        if cur_website_name:
+            websiteLabel.config(text=f"Detected Website: {cur_website_name}") # Update the display detected website on GUI
         time.sleep(0.1) # Delay between HTTPS requests to ensure findWebsite() works correctly
+
+def update_sort_folder_path():
+    global folderPath
+    folderPath = change_path_to_sort_folder(folderPath, store_sort_folder_file_path, updateLog, cur_sort_folder, logText)
 
 def start_main_program():
     stop_event.clear()
@@ -81,8 +89,9 @@ def stop_main_program():
     updateLog("Program Stopped", logText)
     curStatus.config(text="Status: Stopped") # Update status on GUI
 
+
 def main():
-    global stop_event, folderPath
+    global stop_event, folderPath, cur_website_name
     global cur_path_to_tesseract, cur_sort_folder, curStatus, logText
     global websiteLabel, current_url
 
@@ -94,6 +103,7 @@ def main():
         create_special_case_database()
 
         folderPath = "N/A"
+        cur_website_name = False
 
         # Create GUI
 
@@ -123,8 +133,7 @@ def main():
 
         cur_sort_folder = tk.Label(mainTab, text=f"Operating Folder: {folderPath}")
         cur_sort_folder.pack(pady=5)
-        tk.Button(mainTab, text="Change Operating Folder", command=lambda:
-            change_path_to_sort_folder(folderPath,store_sort_folder_file_path,updateLog,cur_sort_folder,logText)).pack(pady=5)
+        tk.Button(mainTab, text="Change Operating Folder", command=update_sort_folder_path).pack(pady=5)
 
         # Access the stored file path that the user wants to move downloads from and store the folders with sorted files to
         # Prompt the user to input a valid one if none exists
@@ -134,14 +143,18 @@ def main():
         curStatus = tk.Label(mainTab, text="Status: Stopped")
         curStatus.pack(pady=20)
 
-        # Always have a label that shows the detected website
+        # Constantly update the current website name and sort/operating folder path
+        update_variables_thread = threading.Thread(target=updateVariables)
+        update_variables_thread.daemon = True
+        update_variables_thread.start()
 
+        # Always have a label that shows the detected website
         websiteLabel = tk.Label(mainTab, text="Detected Website: ")
         websiteLabel.pack(pady=0)
 
-        update_website_thread = threading.Thread(target=update_detected_website_on_GUI)
-        update_website_thread.daemon = True
-        update_website_thread.start()
+        update_website_display_thread = threading.Thread(target=update_detected_website_on_GUI)
+        update_website_display_thread.daemon = True
+        update_website_display_thread.start()
 
         # Frame for Start and Stop buttons to make them horizontal to each other
         buttonFrame = tk.Frame(mainTab)

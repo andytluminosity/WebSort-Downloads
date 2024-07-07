@@ -4,10 +4,15 @@ from tkinter.filedialog import askdirectory
 from tkinter import messagebox
 
 def getMostRecentFileInFolder(folderPath):
+    temp_extensions = (
+    '.tmp', '.temp', '.bak', '.old', '~', '.~tmp', '.swp', '~$', '.crdownload', '.download', '.part', '.log', '.obj',
+    '.pch', '.gch', '.ldb', '.tlog')
+
     files = glob.glob(os.path.join(folderPath, '*')) #Refresh the list of files seen by the program
-    if len(files)>0:
-        return max(files, key=os.path.getctime)
-    return False
+    non_temp_files = [f for f in files if not f.endswith(temp_extensions)]
+    if len(non_temp_files)>0:
+        return max(non_temp_files, key=os.path.getctime)
+    return -1
 
 def verify_path_to_sort_folder(folderPath, get_stored_sort_folder_path, store_sort_folder_file_path,updateLog, cur_sort_folder):
     # Access the stored pytesseract file path and prompt the user to input a valid one if none exists
