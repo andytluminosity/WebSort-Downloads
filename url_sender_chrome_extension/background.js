@@ -13,4 +13,4 @@ function sendUrl() {
 }
 
 sendUrl();
-setInterval(sendUrl, 500); // Send the URL every 0.5 secs
+setInterval(sendUrl, 300); // Send the URL every 0.3 secs
