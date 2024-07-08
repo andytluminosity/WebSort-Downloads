@@ -31,7 +31,7 @@ def open_add_special_case_window(logText, labels, dbTab):
 
             else: # Otherwise ask the user if they want to replace it
                 existing_folder_path = get_folder_path(websiteName)
-                if messagebox.askyesno("Duplicate Special Case", f"A special case already exists"
+                if messagebox.askyesno("Duplicate Special Case", f"A special case already exists "
                                                                  f"where all downloads from {websiteName} are redirected to {existing_folder_path}. Would you like to replace it?"):
                     delete_from_database(websiteName)
                     store_special_case(websiteName, folderPath)
@@ -50,7 +50,7 @@ def open_add_special_case_window(logText, labels, dbTab):
     def select_folder_path():
         nonlocal folderPath
         folderPath = r'{}'.format(
-            askdirectory(title="Select the Folder to Move Downloads From and Store Sorted Folders In"),
+            askdirectory(title="Select the folder to move downloads from the indicated website to"),
             mustexist=True)
         # Update the folder path entry field
         curFolderPath.config(text=f"Folder Path: {folderPath}")

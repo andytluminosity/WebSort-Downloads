@@ -38,6 +38,8 @@ def updateLog(message,logText):
 
     logText.insert(tk.END, loggedTime + message + "\n") # Add message to the end of the previous one
     logText.config(state=tk.DISABLED) # Disable edits
+
+    print(loggedTime + message+ '\n') # For debugging
     return logText
 
 def cleanup_old_logs():

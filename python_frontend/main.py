@@ -58,15 +58,20 @@ def move_downloaded_files_under_sorted_folder():
                     else:
                         newFolderPath = os.path.join(folderPath, cur_website_name)
 
+                    print("New Folder Path:", newFolderPath)
                     if not os.path.exists(newFolderPath):
                         os.makedirs(newFolderPath)
-                    shutil.move(downloadedFile, newFolderPath)
-                    updateLog(f"{downloadedFile} moved to {newFolderPath}", logText)
+
+                    try:
+                        shutil.move(downloadedFile, newFolderPath)
+                        updateLog(f"{downloadedFile} moved to {newFolderPath}", logText)
+                    except shutil.Error:
+                        print(f"\n\nCRITICAL ERROR: {downloadedFile} already exists in {newFolderPath}\n\n")
 
 def update_detected_website_on_GUI():
     global cur_website_name
     while True:
-        print(cur_website_name)
+        print('Current Website:', cur_website_name)
         if cur_website_name:
             websiteLabel.config(text=f"Detected Website: {cur_website_name}") # Update the display detected website on GUI
         time.sleep(0.1) # Delay between HTTPS requests to ensure findWebsite() works correctly
@@ -88,7 +93,6 @@ def stop_main_program():
     stop_event.set()
     updateLog("Program Stopped", logText)
     curStatus.config(text="Status: Stopped") # Update status on GUI
-
 
 def main():
     global stop_event, folderPath, cur_website_name
