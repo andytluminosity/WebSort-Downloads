@@ -1,6 +1,6 @@
 # WebSort Downloads
 
-### Note: Only works for Google Chrome and does not work with Onedrive files/folders
+### Note: Only works for Google Chrome
 
 A program that, by default, automatically sorts new downloads into subfolders based on their source website located in the same downloads folder. You can control where downloads from certain websites are sorted to with `Special Cases`. The source website is detected using Chrome API.
 
