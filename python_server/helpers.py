@@ -11,13 +11,13 @@ def getMostRecentFileInFolder(folderPath):
     files = glob.glob(os.path.join(folderPath, '*')) #Refresh the list of files seen by the program
     non_temp_files = [f for f in files if not f.endswith(temp_extensions)]
     if len(non_temp_files)>0:
-        try:
+        try: # Is necessary due to the SLIGHT time frame that a file is detected but already moved and no longer in folder
             return max(non_temp_files, key=os.path.getctime)
         except FileNotFoundError:
             return -1
     return -1
 
-def verify_path_to_sort_folder(folderPath, get_stored_sort_folder_path, store_sort_folder_file_path,updateLog, cur_sort_folder):
+def verify_path_to_sort_folder(get_stored_sort_folder_path, store_sort_folder_file_path, cur_sort_folder):
     # Access the stored pytesseract file path and prompt the user to input a valid one if none exists
 
     # Check if there is a stored file path to a folder
