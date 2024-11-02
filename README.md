@@ -93,7 +93,7 @@ On other Linux based distros install python3.9 from your package manager.
  	You can always check which website is being detected using the `Detected Website:` label on the GUI
 - [ ] Only some downloads are being sorted into the desired folder (<v1.1.1)
 	- Releases older than v1.1.1 are quite slow. As a rule of thumb, it is recommended to wait 0.5-1 second before downloading another file
- - [ ] Download is not being sorted at al
+ - [ ] Download is not being sorted at all
 	- The program cannot sort a file with the same name as a file in its destination/sorted folder. Check if there are any duplicates of that download in that folder
 - [ ] Current website is not being detected at all
 	- First reload/refresh the Chrome extension in developer mode. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on enabling developer mode and re-adding the extension)
