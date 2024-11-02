@@ -38,14 +38,20 @@ def updateVariables():
 def move_downloaded_files_under_sorted_folder():
     global cur_website_name
     global folderPath
-    # Get the most recent file in the indicated sorted folder path for later reference
-    mostRecentFile = getMostRecentFileInFolder(folderPath)
+    # Get the time the most recent file in the indicated sorted folder path was created for later reference
+    try:
+        mostRecentFileTime = os.path.getctime(getMostRecentFileInFolder(folderPath))
+    except OSError:
+        mostRecentFileTime = -1
 
     while not stop_event.is_set(): # While the program is still running
-        if getMostRecentFileInFolder(folderPath): # If there is a file in the operating folder
+        if getMostRecentFileInFolder(folderPath):  # If there is a file in the operating folder
             downloadedFile = getMostRecentFileInFolder(folderPath)
 
-            if downloadedFile != mostRecentFile: # Makes sure the program only moves newly downloaded files
+            if downloadedFile == -1:
+                continue
+
+            if os.path.getctime(downloadedFile) > mostRecentFileTime:  # Makes sure the program only moves newly downloaded files
                 if cur_website_name != False:
 
                     # If a special case has been made, move it to the specified folder path
@@ -61,6 +67,8 @@ def move_downloaded_files_under_sorted_folder():
                     print("New Folder Path:", newFolderPath)
                     if not os.path.exists(newFolderPath):
                         os.makedirs(newFolderPath)
+                        # Ensure the program doesn't try to move the newly created folder into said folder
+                        mostRecentFileTime = os.path.getctime(newFolderPath)
 
                     try:
                         shutil.move(downloadedFile, newFolderPath)
