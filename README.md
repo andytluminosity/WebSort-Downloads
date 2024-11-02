@@ -95,6 +95,8 @@ On other Linux based distros install python3.9 from your package manager.
 	- The program cannot sort a file with the same name as a file in its destination/sorted folder. Check if there are any duplicates of that download in that folder
 - [ ] Current website is not being detected
 	- First reload/refresh the Chrome extension in developer mode. If the problem persists, remove and re-add the Chrome extension (see **Usage** for instructions on enabling developer mode and re-adding the extension)
+- [ ] Delete button for Special Cases is gone
+	- It may be off your current window. Try expanding/full-screening the window and the delete button will appear
 
 ## Reporting Other Issues
 - When reporting other issues, please run the program using start_debug.exe, recreate the issue, and copy-paste everything said on the console into a .txt file. It makes fixing the issue a lot easier!
