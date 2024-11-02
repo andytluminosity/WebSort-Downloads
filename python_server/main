@@ -41,7 +41,7 @@ def move_downloaded_files_under_sorted_folder():
     # Get the time the most recent file in the indicated sorted folder path was created for later reference
     try:
         mostRecentFileTime = os.path.getctime(getMostRecentFileInFolder(folderPath))
-    except OSError:
+    except (OSError,FileNotFoundError) as e:
         mostRecentFileTime = -1
 
     while not stop_event.is_set(): # While the program is still running
