@@ -8,10 +8,10 @@ A program that, by default, automatically sorts new downloads into subfolders ba
 
 - Change the program's operating folder
 - Start and stop the program at will
-- Logs to keep track of changes made like when the program has been started, stopped, and moved a file (its old and new locations)
+- Logs to keep track of changes such as when the program has been started, stopped, and moved a file (its old and new locations)
 	- Note: Any logs older than 2 weeks will automatically be deleted to save memory
 - A label that constantly displays the website you are on
-- Customizable special cases that allow control over where downloads from certain websites go
+- Customizable special cases that allow direct control over where downloads from certain websites go
 
 ## Installation
 
