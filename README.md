@@ -64,7 +64,7 @@ On other Linux based distros install python3.9 from your package manager.
 	- Click the Load unpacked button and select the `url_sender_extension` folder	
 	- Ensure that the extension is turned on
  - [ ] Start the program
-	- Simple open the start.exe application within the `python_frontend` folder (it simply is a shortcut to running main.py)
+	- Simple open the start.exe application within the `python_server` folder (it simply is a shortcut to running main.py)
  	- It is recommended to have this application pinned to your taskbar
  	- Your antivirus will likely flag this application as dangerous so creating an exception is necessary. See **File Safety** if you are concerned about the well-being of your files
  - [ ] Select the operating folder path
