@@ -49,7 +49,7 @@ A program that, by default, automatically sorts new downloads into subfolders ba
 On other Linux based distros install python3.9 from your package manager.
 
 - [ ]  Download the main zip file from the latest release notes
-	- [Latest release notes](https://github.com/andytluminosity/WebSort-Downloads/releases/tag/v1.0)
+	- [Latest release notes](https://github.com/andytluminosity/WebSort-Downloads/releases/tag/v1.1.2)
  
 - [ ] Install Dependencies
 	- `python3.9 -m pip install flask flask_cors` / `python -m pip install flask flask_cors` / `py -m pip install flask flask_cors`
