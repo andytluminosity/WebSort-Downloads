@@ -4,7 +4,7 @@
 
 A program that, by default, automatically sorts new downloads into subfolders based on their source website located in the same downloads folder. You can control where downloads from certain websites are sorted to with `Special Cases`. The source website is detected using Chrome API.
 
-Demo Video: [https://youtu.be/rKL_5BLIP7E](https://youtu.be/rKL_5BLIP7E)
+Demo Video: [https://youtu.be/TEU3rsq6Bo8](https://youtu.be/TEU3rsq6Bo8)
 
 ## Features
 
