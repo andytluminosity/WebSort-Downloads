@@ -6,6 +6,7 @@ A program that, by default, automatically sorts new downloads into subfolders ba
 
 ## Demo Video
 [https://www.youtube.com/watch?v=UE_83abO78I](https://www.youtube.com/watch?v=UE_83abO78I)
+
 [![WebSort Downloads Demo](https://img.youtube.com/vi/UE_83abO78I/0.jpg)](https://www.youtube.com/watch?v=UE_83abO78I)
 
 ## Features
