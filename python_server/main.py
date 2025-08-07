@@ -18,7 +18,7 @@ from helpers import (
     getMostRecentFileInFolder,
     verify_path_to_sort_folder,
 )
-from find_chrome_website import get_current_url, start_flask_server, stop_flask_server
+from find_chrome_website import start_flask_server, update_url
 import shutil
 import time
 import tkinter as tk
@@ -28,38 +28,27 @@ import os
 
 
 def updateVariables():
-    def findWebsite():
-        global cur_website_name
-        prevURL = ""
-        
-        while True:
-            # Start the Flask server from find_chrome_website
-            server_thread = start_flask_server()
-            # Wait for the server to start
-            time.sleep(0.1)
+    global cur_website_name
+    prevURL = ""
+    
+    while True:
+        url = update_url()
 
-            # Stop the Flask server
-            stop_flask_server(server_thread)
-
-            # Get the curURL after server has stopped
-            url = get_current_url()
-            if url != prevURL:
-                prevURL = url
-                print(url)
-            # Only get the main website name
-            components = url.split("/")
-            for comp in components:
-                if (
-                    "." in comp
-                ):  # The website name will have at least 1 "." from the domain name
-                    if len(comp) >= 5:  # Ensure that the starting "www." is removed
-                        if "www." in comp:
-                            cur_website_name = comp[4:]
-                            break
-                    cur_website_name = comp
-                    break
-
-    findWebsite()
+        if url != prevURL:
+            prevURL = url
+            print(url)
+        # Only get the main website name
+        components = url.split("/")
+        for comp in components:
+            if (
+                "." in comp
+            ):  # The website name will have at least 1 "." from the domain name
+                if len(comp) >= 5:  # Ensure that the starting "www." is removed
+                    if "www." in comp:
+                        cur_website_name = comp[4:]
+                        break
+                cur_website_name = comp
+                break
 
 
 def move_downloaded_files_under_sorted_folder():
@@ -118,18 +107,17 @@ def update_detected_website_on_GUI():
     global cur_website_name
     prevWebsiteName = ""
 
-    while True:
+    def update_website_display():
+        nonlocal prevWebsiteName
         if cur_website_name != prevWebsiteName:
             prevWebsiteName = cur_website_name
             print("Current Website:", cur_website_name)
-        if cur_website_name:
             websiteLabel.config(
                 text=f"Detected Website: {cur_website_name}"
-            )  # Update the display detected website on GUI
-        time.sleep(
-            0.1
-        )  # Delay between HTTPS requests to ensure findWebsite() works correctly
+            ) # Update the display detected website on GUI
+            websiteLabel.after(100, update_website_display) # Re-run every 100ms to allow HTTPS requests to finish
 
+    update_website_display()
 
 def update_sort_folder_path():
     global folderPath
@@ -161,6 +149,9 @@ def main():
 
     try:
         stop_event = threading.Event()
+
+        # Start the Flask server from find_chrome_website
+        start_flask_server()
 
         create_file_database()
         create_logs_database()
@@ -197,13 +188,15 @@ def main():
         logText = tk.Text(logsTab, state=tk.DISABLED, wrap=tk.WORD)
         logText.pack(expand=1, fill="both")
 
-        # Load logs when the logs tab is selected
-        tabRoot.bind(
-            "<<NotebookTabChanged>>",
-            lambda event: loadLogs(logText)
-            if tabRoot.index(tabRoot.select()) == 1
-            else None,
-        )
+        # Smart tab switching with caching
+        def on_tab_changed(event):
+            selected_tab = tabRoot.index(tabRoot.select())
+            if selected_tab == 1:  # Logs tab
+                loadLogs(logText)
+            elif selected_tab == 2:  # Special cases tab
+                refresh_special_cases_gui(labels, special_cases_tab, logText)
+        
+        tabRoot.bind("<<NotebookTabChanged>>", on_tab_changed)
 
         cur_sort_folder = tk.Label(mainTab, text=f"Operating Folder: {folderPath}")
         cur_sort_folder.pack(pady=5)
@@ -253,7 +246,6 @@ def main():
         # Database Tab
 
         labels = []
-        # tk.Label(special_cases_tab, text="Website Name:").grid(row=0, column=0, padx=10, pady=10, sticky='w')
         tk.Button(
             special_cases_tab,
             text="Add Special Case",
