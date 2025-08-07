@@ -20,7 +20,6 @@ from helpers import (
 )
 from find_chrome_website import start_flask_server, update_url
 import shutil
-import time
 import tkinter as tk
 from tkinter import ttk
 import threading
@@ -30,7 +29,7 @@ import os
 def updateVariables():
     global cur_website_name
     prevURL = ""
-    
+
     while True:
         url = update_url()
 
@@ -114,10 +113,13 @@ def update_detected_website_on_GUI():
             print("Current Website:", cur_website_name)
             websiteLabel.config(
                 text=f"Detected Website: {cur_website_name}"
-            ) # Update the display detected website on GUI
-            websiteLabel.after(100, update_website_display) # Re-run every 100ms to allow HTTPS requests to finish
+            )  # Update the display detected website on GUI
+            websiteLabel.after(
+                100, update_website_display
+            )  # Re-run every 100ms to allow HTTPS requests to finish
 
     update_website_display()
+
 
 def update_sort_folder_path():
     global folderPath
@@ -195,7 +197,7 @@ def main():
                 loadLogs(logText)
             elif selected_tab == 2:  # Special cases tab
                 refresh_special_cases_gui(labels, special_cases_tab, logText)
-        
+
         tabRoot.bind("<<NotebookTabChanged>>", on_tab_changed)
 
         cur_sort_folder = tk.Label(mainTab, text=f"Operating Folder: {folderPath}")

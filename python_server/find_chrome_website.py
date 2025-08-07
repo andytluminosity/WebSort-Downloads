@@ -1,13 +1,13 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import threading
-import logging
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
 curURL_lock = threading.Lock()  # Lock to synchronize access to curURL
 prevURL = ""
+
 
 @app.route("/receive_url", methods=["POST"])
 def update_url():
