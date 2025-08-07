@@ -26,6 +26,7 @@ import threading
 import time
 import os
 
+
 def move_downloaded_files_under_sorted_folder():
     global cur_website_name
     global folderPath
@@ -77,11 +78,13 @@ def move_downloaded_files_under_sorted_folder():
                             f"\n\nCRITICAL ERROR: {downloadedFile} already exists in {newFolderPath}\n\n"
                         )
 
+
 def update_cur_url():
     global cur_website_name
     while True:
         cur_website_name = get_cur_url()
         time.sleep(0.3)
+
 
 def update_detected_website_on_GUI():
     global cur_website_name, prevWebsiteName, websiteLabel
@@ -93,9 +96,7 @@ def update_detected_website_on_GUI():
         )  # Update the display detected website on GUI
 
     # Constantly re-run to keep the website label updated and allow HTTPS requests to finish
-    websiteLabel.after(
-        100, update_detected_website_on_GUI
-    )  
+    websiteLabel.after(100, update_detected_website_on_GUI)
 
 
 def update_sort_folder_path():

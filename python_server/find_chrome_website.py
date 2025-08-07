@@ -20,22 +20,26 @@ def update_url():
             # Only get the main website name
             components = url.split("/")
             for comp in components:
-                if "." in comp:  # The website name will have at least 1 "." from the domain name
+                if (
+                    "." in comp
+                ):  # The website name will have at least 1 "." from the domain name
                     if len(comp) >= 5:  # Ensure that the starting "www." is removed
                         if "www." in comp:
                             curUrl = comp[4:]
                             break
                     curUrl = comp
                     break
-                curUrl = url
-                prevURL = url
-                print(f"Received URL: {curUrl}")
+
+            prevURL = url
+            print(f"Received URL: {curUrl}")
 
     return jsonify({"status": "success"}), 200
+
 
 def get_cur_url():
     global curUrl
     return curUrl
+
 
 # Function to run the server in a separate thread
 def start_flask_server():
