@@ -9,16 +9,18 @@ CORS(app)  # This will enable CORS for all routes
 # Initialize a global variable to store the current URL
 curURL = ""
 curURL_lock = threading.Lock()  # Lock to synchronize access to curURL
-
+prevURL = ""
 
 @app.route("/receive_url", methods=["POST"])
 def receive_url():
-    global curURL  # Declare the variable as global to modify it
+    global curURL, prevURL  # Declare the variable as global to modify it
     data = request.get_json()
     url = data.get("url")
     with curURL_lock:
         curURL = url
-        print(f"Received URL: {curURL}")
+        if curURL != prevURL:
+            prevURL = curURL
+            print(f"Received URL: {curURL}")
 
     return jsonify({"status": "success"}), 200
 

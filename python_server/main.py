@@ -30,6 +30,8 @@ import os
 def updateVariables():
     def findWebsite():
         global cur_website_name
+        prevURL = ""
+        
         while True:
             # Start the Flask server from find_chrome_website
             server_thread = start_flask_server()
@@ -41,7 +43,9 @@ def updateVariables():
 
             # Get the curURL after server has stopped
             url = get_current_url()
-            print(url)
+            if url != prevURL:
+                prevURL = url
+                print(url)
             # Only get the main website name
             components = url.split("/")
             for comp in components:
@@ -112,8 +116,12 @@ def move_downloaded_files_under_sorted_folder():
 
 def update_detected_website_on_GUI():
     global cur_website_name
+    prevWebsiteName = ""
+
     while True:
-        print("Current Website:", cur_website_name)
+        if cur_website_name != prevWebsiteName:
+            prevWebsiteName = cur_website_name
+            print("Current Website:", cur_website_name)
         if cur_website_name:
             websiteLabel.config(
                 text=f"Detected Website: {cur_website_name}"
