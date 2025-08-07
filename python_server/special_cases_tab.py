@@ -5,6 +5,7 @@ from special_cases_database import (
     store_special_case,
 )
 import tkinter as tk
+from tkinter import font
 from tkinter.filedialog import askdirectory
 from logs_database import updateLog
 import sqlite3
@@ -124,14 +125,14 @@ def refresh_special_cases_gui(labels, special_cases_tab, logText):
 
     # Add column headers
     website_header = tk.Label(
-        special_cases_tab, text="Website", font=tk.font.Font(weight="bold"), anchor="w"
+        special_cases_tab, text="Website", font=font.Font(weight="bold"), anchor="w"
     )
     website_header.grid(row=1, column=1, pady=5, sticky="w")
 
     folder_path_header = tk.Label(
         special_cases_tab,
         text="New Folder Path",
-        font=tk.font.Font(weight="bold"),
+        font=font.Font(weight="bold"),
         anchor="w",
     )
     folder_path_header.grid(row=1, column=3, pady=5, sticky="w")
