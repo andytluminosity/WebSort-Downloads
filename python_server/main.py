@@ -18,37 +18,13 @@ from helpers import (
     getMostRecentFileInFolder,
     verify_path_to_sort_folder,
 )
-from find_chrome_website import start_flask_server, update_url
+from find_chrome_website import start_flask_server, get_cur_url
 import shutil
 import tkinter as tk
 from tkinter import ttk
 import threading
+import time
 import os
-
-
-def updateVariables():
-    global cur_website_name
-    prevURL = ""
-
-    while True:
-        url = update_url()
-
-        if url != prevURL:
-            prevURL = url
-            print(url)
-        # Only get the main website name
-        components = url.split("/")
-        for comp in components:
-            if (
-                "." in comp
-            ):  # The website name will have at least 1 "." from the domain name
-                if len(comp) >= 5:  # Ensure that the starting "www." is removed
-                    if "www." in comp:
-                        cur_website_name = comp[4:]
-                        break
-                cur_website_name = comp
-                break
-
 
 def move_downloaded_files_under_sorted_folder():
     global cur_website_name
@@ -101,24 +77,25 @@ def move_downloaded_files_under_sorted_folder():
                             f"\n\nCRITICAL ERROR: {downloadedFile} already exists in {newFolderPath}\n\n"
                         )
 
+def update_cur_url():
+    global cur_website_name
+    while True:
+        cur_website_name = get_cur_url()
+        time.sleep(0.3)
 
 def update_detected_website_on_GUI():
-    global cur_website_name
-    prevWebsiteName = ""
+    global cur_website_name, prevWebsiteName, websiteLabel
 
-    def update_website_display():
-        nonlocal prevWebsiteName
-        if cur_website_name != prevWebsiteName:
-            prevWebsiteName = cur_website_name
-            print("Current Website:", cur_website_name)
-            websiteLabel.config(
-                text=f"Detected Website: {cur_website_name}"
-            )  # Update the display detected website on GUI
-            websiteLabel.after(
-                100, update_website_display
-            )  # Re-run every 100ms to allow HTTPS requests to finish
+    if cur_website_name != prevWebsiteName:
+        prevWebsiteName = cur_website_name
+        websiteLabel.config(
+            text=f"Detected Website: {cur_website_name}"
+        )  # Update the display detected website on GUI
 
-    update_website_display()
+    # Constantly re-run to keep the website label updated and allow HTTPS requests to finish
+    websiteLabel.after(
+        100, update_detected_website_on_GUI
+    )  
 
 
 def update_sort_folder_path():
@@ -146,8 +123,8 @@ def stop_main_program():
 
 def main():
     global stop_event, folderPath, cur_website_name, created_folder_paths
-    global cur_path_to_tesseract, cur_sort_folder, curStatus, logText
-    global websiteLabel, current_url
+    global cur_sort_folder, curStatus, logText
+    global websiteLabel, prevWebsiteName
 
     try:
         stop_event = threading.Event()
@@ -160,7 +137,8 @@ def main():
         create_special_case_database()
 
         folderPath = "N/A"
-        cur_website_name = False
+        cur_website_name = ""
+        prevWebsiteName = ""
         created_folder_paths = []
 
         # Create GUI
@@ -216,19 +194,16 @@ def main():
         curStatus.pack(pady=20)
 
         # Constantly update the current website name and sort/operating folder path
-        update_variables_thread = threading.Thread(target=updateVariables)
-        update_variables_thread.daemon = True
-        update_variables_thread.start()
+        update_cur_url_thread = threading.Thread(target=update_cur_url)
+        update_cur_url_thread.daemon = True
+        update_cur_url_thread.start()
 
         # Always have a label that shows the detected website
         websiteLabel = tk.Label(mainTab, text="Detected Website: ")
         websiteLabel.pack(pady=0)
 
-        update_website_display_thread = threading.Thread(
-            target=update_detected_website_on_GUI
-        )
-        update_website_display_thread.daemon = True
-        update_website_display_thread.start()
+        # Constantly update the website label
+        update_detected_website_on_GUI()
 
         # Frame for Start and Stop buttons to make them horizontal to each other
         buttonFrame = tk.Frame(mainTab)
