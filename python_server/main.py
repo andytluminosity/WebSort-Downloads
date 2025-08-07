@@ -22,6 +22,7 @@ from find_chrome_website import get_current_url, start_flask_server, stop_flask_
 import shutil
 import time
 import tkinter as tk
+from tkinter import ttk
 import threading
 import os
 
@@ -168,13 +169,18 @@ def main():
         root.geometry("500x270")
 
         # Create Tabs
-        tabRoot = tk.ttk.Notebook(root)  # Shortcut
+        tabRoot = ttk.Notebook(root)  # Shortcut
 
-        mainTab = tk.ttk.Frame(tabRoot)  # Make the main tain
+        # Make the main tab
+        mainTab = ttk.Frame(tabRoot)
         tabRoot.add(mainTab, text="Main")
-        logsTab = tk.ttk.Frame(tabRoot)  # Make the logs tab
+
+        # Make the logs tab
+        logsTab = ttk.Frame(tabRoot)
         tabRoot.add(logsTab, text="Logs")
-        special_cases_tab = tk.ttk.Frame(tabRoot)  # Make the
+
+        # Make the special cases tab
+        special_cases_tab = ttk.Frame(tabRoot)
         tabRoot.add(special_cases_tab, text="Special Cases")
 
         tabRoot.pack(expand=1, fill="both")
