@@ -25,6 +25,8 @@ from tkinter import ttk
 import threading
 import time
 import os
+import ctypes
+from PIL import Image
 
 
 def move_downloaded_files_under_sorted_folder():
@@ -147,6 +149,21 @@ def main():
         root = tk.Tk()  # Shortcut
         root.title("WebSort Downloads")
         root.geometry("500x270")
+
+        # Set a unique App ID (VERY IMPORTANT)
+        myappid = "asds.app.window"
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
+        img = Image.open("WebSortDownloadsLogo_64.ico")
+
+        # Save the image as an ICO file with multiple sizes
+        img.save(
+            "WebSortDownloadsLogo_64.ico",
+            sizes=[(16, 16), (32, 32), (48, 48), (256, 256)],
+        )
+
+        # Set taskbar + title bar icon
+        root.iconbitmap("WebSortDownloadsLogo_64.ico")
 
         # Create Tabs
         tabRoot = ttk.Notebook(root)  # Shortcut
